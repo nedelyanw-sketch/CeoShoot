@@ -14,7 +14,6 @@ A lightweight, high-performance screen capture utility built in C# using .NET Fr
 
 ## 🔥 Key Features
 
-* **🥷 Invisible Background Agent** – Runs quietly in the system tray. Completely stripped from the Windows Taskbar and the `Alt+Tab` switcher menu.
 * **⚡ Ultra-Fast Region Selection** – Instant desktop dimming overlay that captures your screen seamlessly without rendering lag.
 * **✏️ On-the-Fly Annotations** – Draw custom lines or add rich text layers directly onto your selected screenshot before saving.
 * **📈 Live Resolution Feed** – Real-time pixel dimensions dashboard displayed instantly above your current bounding box.
@@ -36,13 +35,5 @@ While the application is active in your tray, use these rapid hotkeys to control
 
 ---
 
-## 🚀 Getting Started & Setup
-
 ### Prerequisites
 * Windows OS 10 / 11
-* .NET Framework 4.7.2
-* IDE of choice (Visual Studio, Rider)
-
-### Architecture Overview
-The project is decoupled into three clean, primary modules:
-1. `Program.cs` – Initial application booting logic and user run
