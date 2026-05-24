@@ -3,6 +3,7 @@
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Platform: Windows](https://img.shields.io/badge/Platform-Windows-lightgray.svg?logo=windows)]()
 [![Framework: .NET](https://img.shields.io/badge/Framework-.NET%20Framework%204.7.2-purple.svg)]()
+[![Site])(https://wh0amitg.github.io/CeoShoot)
 
 A lightweight, high-performance screen capture utility built in C# using .NET Framework 4.7.2 and native Win32 APIs. Deployed straight to the system tray, it provides instant region capturing, on-the-fly annotations, and real-time desktop cropping.
 
@@ -11,7 +12,6 @@ A lightweight, high-performance screen capture utility built in C# using .NET Fr
 </p>
 
 ---
-
 ## 🔥 Key Features
 
 * **⚡ Ultra-Fast Region Selection** – Instant desktop dimming overlay that captures your screen seamlessly without rendering lag.
