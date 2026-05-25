@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CEOSHOOT — Screen Capture</title>
+    
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="CEOSHOOT" />
     <meta property="og:title" content="CEOSHOOT — Screen Capture" />
     <meta property="og:description" content="Frameless, hyper-optimized screenshot tool built purely in C#. Zero lag, pure performance." />
     <meta property="og:url" content="https://nedelyanw-sketch.github.io/CeoShoot/" />
-    <meta property="og:image" content="https://nedelyanw-sketch.github.io/CeoShoot/image_29cce2.png" />
+    <meta property="og:image" content="https://nedelyanw-sketch.github.io/CeoShoot/preview.png" />
     
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="CEOSHOOT v0.3 — Screen Capture">
     <meta name="twitter:description" content="Hyper-optimized screenshot tool built purely in C#. Zero lag, pure performance.">
-    <meta name="twitter:image" content="https://nedelyanw-sketch.github.io/CeoShoot/image_29cce2.png">
+    <meta name="twitter:image" content="https://nedelyanw-sketch.github.io/CeoShoot/preview.png">
     
     <meta name="theme-color" content="#00F0FF">
 
@@ -23,7 +24,7 @@
             --bg-base: #050505;
             --primary: #00F0FF;
             --primary-hover: #00c3cf;
-            --primary-glow: rgba(0, 240, 255, 0.5);
+            --primary-glow: rgba(0, 240, 255, 0.4);
             --text-main: #ffffff;
             --text-muted: #a1a1aa;
             --glass-bg: rgba(20, 20, 28, 0.4);
@@ -44,7 +45,6 @@
             overflow-x: hidden;
         }
 
-        /* Анимированный фон через картинку */
         #animated-bg {
             position: fixed;
             top: -5%;
@@ -55,14 +55,14 @@
             background-size: cover;
             background-position: center;
             z-index: -2;
-            transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1);
             will-change: transform;
         }
 
         #bg-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, rgba(5,5,5,0.7) 0%, rgba(5,5,5,0.95) 100%);
+            background: radial-gradient(circle at center, rgba(5,5,5,0.6) 0%, rgba(5,5,5,0.96) 100%);
             z-index: -1;
         }
 
@@ -86,9 +86,9 @@
 
         nav.scrolled {
             padding: 15px 5%;
-            background: rgba(11, 11, 16, 0.7);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: rgba(5, 5, 8, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--glass-border);
         }
 
@@ -112,6 +112,7 @@
             margin-left: 8px;
             box-shadow: 0 0 15px var(--primary-glow);
             animation: pulse 2s infinite;
+            transition: background-color 0.3s;
         }
 
         @keyframes pulse {
@@ -124,8 +125,8 @@
             color: var(--text-muted);
             text-decoration: none;
             margin-left: 35px;
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 13px;
+            font-weight: 700;
             transition: all 0.3s;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -148,17 +149,19 @@
         }
 
         .badge {
-            background: rgba(0, 240, 255, 0.1);
+            background: rgba(20, 20, 28, 0.6);
+            backdrop-filter: blur(10px);
             color: var(--primary);
             padding: 8px 20px;
             border-radius: 30px;
             font-size: 13px;
             font-weight: 700;
-            border: 1px solid rgba(0, 240, 255, 0.3);
+            border: 1px solid var(--primary);
             margin-bottom: 30px;
             letter-spacing: 1px;
             text-transform: uppercase;
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.05);
+            transition: border-color 0.3s, color 0.3s;
         }
 
         .hero h1 {
@@ -173,6 +176,7 @@
         .hero h1 span {
             color: var(--primary);
             text-shadow: 0 0 40px var(--primary-glow);
+            transition: color 0.3s, text-shadow 0.3s;
         }
 
         .hero p {
@@ -180,7 +184,6 @@
             color: var(--text-muted);
             max-width: 650px;
             margin-bottom: 45px;
-            font-weight: 400;
         }
 
         .cta-buttons {
@@ -194,7 +197,7 @@
             justify-content: center;
             padding: 16px 36px;
             border-radius: 8px;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
             text-decoration: none;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -212,7 +215,7 @@
         .btn-primary:hover {
             background-color: var(--text-main);
             transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
         }
 
         .btn-secondary {
@@ -223,23 +226,233 @@
         }
 
         .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.08);
             border-color: var(--primary);
             transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .interactive-preview {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 5%;
+        }
+
+        .preview-box {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            overflow: hidden;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+        }
+
+        .preview-menu {
+            background: rgba(10, 10, 15, 0.6);
+            padding: 40px 30px;
+            border-right: 1px solid var(--glass-border);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .preview-tab {
+            padding: 16px 20px;
+            border-radius: 12px;
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            text-align: left;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .preview-tab.active, .preview-tab:hover {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(255, 255, 255, 0.08);
+            color: var(--text-main);
+        }
+
+        .preview-tab.active {
+            border-color: var(--primary);
+            box-shadow: inset 0 0 15px rgba(0, 240, 255, 0.05);
+        }
+
+        .preview-tab.active .tab-dot {
+            background-color: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .tab-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #3f3f46;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .preview-display {
+            position: relative;
+            background: #0d0d13;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+            overflow: hidden;
+        }
+
+        .display-screen {
+            width: 85%;
+            height: 75%;
+            background-image: url('image_29cce2.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .screen-effect {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .effect-blur {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            clip-path: inset(30% 20% 30% 20% rounded 10px);
+            border: 2px dashed var(--primary);
+        }
+
+        .effect-draw {
+            background: radial-gradient(circle at 50% 50%, transparent 0%, transparent 100%);
+        }
+        .effect-draw::before {
+            content: '';
+            position: absolute;
+            top: 40%; left: 30%; width: 120px; height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+            box-shadow: 0 0 10px var(--primary);
+            transform: rotate(-15deg);
+        }
+
+        .effect-text::before {
+            content: 'CeoShoot Text Mode';
+            position: absolute;
+            top: 45%; left: 35%;
+            color: var(--primary);
+            font-family: 'Consolas', monospace;
+            font-weight: bold;
+            font-size: 18px;
+            background: #000;
+            padding: 4px 8px;
+            border: 1px solid var(--primary);
+        }
+
+        .effect-pixelate {
+            background-image: linear-gradient(rgba(0,0,0,0.1) 2px, transparent 2px), linear-gradient(90deg, rgba(0,0,0,0.1) 2px, transparent 2px);
+            background-size: 8px 8px;
+            backdrop-filter: contrast(1.5) brightness(0.8);
+            clip-path: inset(20% 40% 40% 10% rounded 8px);
+            border: 2px dashed #ff0055;
+        }
+
+        .screen-effect.active { opacity: 1; }
+
+        .theme-selector-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 5%;
+            text-align: center;
+        }
+
+        .color-palette-container {
+            display: inline-flex;
+            gap: 20px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            margin-top: 20px;
+        }
+
+        .palette-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s, border-color 0.3s;
+            border: 3px solid transparent;
+        }
+
+        .palette-circle:hover {
+            transform: scale(1.2);
+        }
+
+        .palette-circle.active {
+            border-color: #fff;
+            transform: scale(1.1);
+        }
+
+        /* Технические характеристики */
+        .tech-stats {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 5% 80px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+        }
+
+        .stat-card {
+            background: rgba(10, 10, 15, 0.4);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .stat-val {
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 6px;
+            text-shadow: 0 0 20px var(--primary-glow);
+            transition: color 0.3s;
+        }
+
+        .stat-lbl {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .features {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 120px 5%;
+            padding: 100px 5% 60px;
         }
 
         .section-title {
             text-align: center;
             font-size: 42px;
             font-weight: 900;
-            margin-bottom: 70px;
+            margin-bottom: 60px;
             letter-spacing: -1px;
         }
 
@@ -272,8 +485,8 @@
 
         .card:hover {
             transform: translateY(-10px);
-            border-color: rgba(0, 240, 255, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0, 240, 255, 0.05);
+            border-color: rgba(0, 240, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         }
 
         .card:hover::before {
@@ -284,7 +497,6 @@
             font-size: 36px;
             margin-bottom: 24px;
             display: inline-block;
-            filter: drop-shadow(0 0 10px var(--primary-glow));
         }
 
         .card h3 {
@@ -300,7 +512,7 @@
         }
 
         .install {
-            background: linear-gradient(to bottom, transparent, rgba(11, 11, 16, 0.9));
+            background: linear-gradient(to bottom, transparent, rgba(8, 8, 12, 0.95));
             border-top: 1px solid var(--glass-border);
             padding: 120px 5%;
         }
@@ -312,7 +524,7 @@
 
         .step {
             display: flex;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             align-items: flex-start;
             background: var(--glass-bg);
             padding: 30px;
@@ -323,7 +535,6 @@
         
         .step:hover {
             transform: translateX(10px);
-            border-color: rgba(255, 255, 255, 0.1);
         }
 
         .step-num {
@@ -334,6 +545,7 @@
             margin-right: 35px;
             min-width: 50px;
             line-height: 1;
+            transition: -webkit-text-stroke 0.3s;
         }
 
         .step-content h4 {
@@ -348,20 +560,20 @@
         }
 
         kbd {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
             border: 1px solid var(--glass-border);
             padding: 4px 10px;
             border-radius: 6px;
             font-family: 'Consolas', monospace;
             font-size: 14px;
             color: var(--primary);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            transition: color 0.3s;
         }
 
         footer {
             text-align: center;
             padding: 50px 20px;
-            background: #000;
+            background: #010103;
             color: var(--text-muted);
             font-size: 14px;
             border-top: 1px solid var(--glass-border);
@@ -369,8 +581,8 @@
 
         .reveal {
             opacity: 0;
-            transform: translateY(40px) scale(0.95);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+            transform: translateY(40px) scale(0.97);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .reveal.active {
@@ -382,9 +594,10 @@
             .cta-buttons { flex-direction: column; width: 100%; }
             .btn { width: 100%; }
             .nav-links { display: none; }
+            .preview-box { grid-template-columns: 1fr; }
+            .preview-menu { border-right: none; border-bottom: 1px solid var(--glass-border); padding: 20px; }
             .step { flex-direction: column; padding: 25px; }
             .step-num { margin-bottom: 15px; -webkit-text-stroke: 0; color: var(--primary); font-size: 32px; }
-            .step:hover { transform: translateY(-5px); }
         }
     </style>
 </head>
@@ -396,6 +609,7 @@
     <nav id="navbar">
         <div class="logo" onclick="window.scrollTo(0,0)">CEOSHOOT</div>
         <div class="nav-links">
+            <a href="#demo">Preview</a>
             <a href="#features">Features</a>
             <a href="#install">Installation</a>
             <a href="https://github.com/nedelyanw-sketch/CeoShoot" target="_blank">GitHub</a>
@@ -403,12 +617,70 @@
     </nav>
 
     <section class="hero reveal">
-        <div class="badge">v0.3 Release is Live</div>
-        <h1>Instantly Capture.<br><span>Effortlessly Shoot.</span></h1>
+        <div class="badge" id="version-badge">v0.3 Active Theme: Neon Blue</div>
+        <h1>Instantly Capture.<br><span id="hero-span">Effortlessly Shoot.</span></h1>
         <p>Ditch the bloated software. Experience a seamless, frameless, and hyper-optimized screenshot tool built purely in C#. Zero lag, pure performance.</p>
         <div class="cta-buttons">
             <a href="https://github.com/nedelyanw-sketch/CeoShoot/releases/tag/Release" class="btn btn-primary" target="_blank">Download V0.3</a>
             <a href="https://github.com/nedelyanw-sketch/CeoShoot" class="btn btn-secondary" target="_blank">Source Code</a>
+        </div>
+    </section>
+
+    <section class="interactive-preview reveal" id="demo">
+        <h2 class="section-title">In-App Toolbar Modes</h2>
+        <div class="preview-box">
+            <div class="preview-menu">
+                <button class="preview-tab active" onclick="switchTab('blur', this)">
+                    <div class="tab-dot"></div> Smart Blur
+                </button>
+                <button class="preview-tab" onclick="switchTab('draw', this)">
+                    <div class="tab-dot"></div> Fluid Draw
+                </button>
+                <button class="preview-tab" onclick="switchTab('text', this)">
+                    <div class="tab-dot"></div> Text Annotation
+                </button>
+                <button class="preview-tab" onclick="switchTab('pixelate', this)">
+                    <div class="tab-dot"></div> Pixelate Box
+                </button>
+            </div>
+            <div class="preview-display">
+                <div class="display-screen">
+                    <div class="screen-effect effect-blur active" id="fx-blur"></div>
+                    <div class="screen-effect effect-draw" id="fx-draw"></div>
+                    <div class="screen-effect effect-text" id="fx-text"></div>
+                    <div class="screen-effect effect-pixelate" id="fx-pixelate"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="theme-selector-section reveal">
+        <h2 class="section-title" style="font-size: 28px; margin-bottom: 10px;">Simulate Your Welcome Palette</h2>
+        <p style="color: var(--text-muted);">Click a color circle to swap the application interface accent on-the-fly.</p>
+        <div class="color-palette-container">
+            <div class="palette-circle active" style="background-color: #00F0FF;" onclick="changeAccent('#00F0FF', 'Neon Blue', this)"></div>
+            <div class="palette-circle" style="background-color: #FF0055;" onclick="changeAccent('#FF0055', 'Cyber Pink', this)"></div>
+            <div class="palette-circle" style="background-color: #00FF66;" onclick="changeAccent('#00FF66', 'Matrix Green', this)"></div>
+            <div class="palette-circle" style="background-color: #9900FF;" onclick="changeAccent('#9900FF', 'Raze Purple', this)"></div>
+        </div>
+    </section>
+
+    <section class="tech-stats reveal">
+        <div class="stat-card">
+            <div class="stat-val">&lt; 15 MB</div>
+            <div class="stat-lbl">RAM Usage in Tray</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-val">0.0s</div>
+            <div class="stat-lbl">Hook Latency</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-val">Pure C#</div>
+            <div class="stat-lbl">No Electron / Bloat</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-val">Win32 API</div>
+            <div class="stat-lbl">Native Global Hooks</div>
         </div>
     </section>
 
@@ -440,7 +712,7 @@
 
     <section class="install" id="install">
         <div class="install-container reveal">
-            <h2 class="section-title" style="text-align: left; margin-bottom: 50px;">Quick Setup</h2>
+            <h2 class="section-title" style="text-align: left; margin-bottom: 50px;">Quick Setup Guide</h2>
             
             <div class="step reveal" style="transition-delay: 0.1s;">
                 <div class="step-num">01</div>
@@ -487,7 +759,7 @@
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 50;
+                var elementVisible = 40;
 
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add("active");
@@ -499,12 +771,12 @@
 
         const animatedBg = document.getElementById('animated-bg');
         document.addEventListener('mousemove', (e) => {
-            const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
-            const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 60;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 60;
             animatedBg.style.transform = `translate(${xAxis}px, ${yAxis}px)`;
         });
 
-        const cards = document.querySelectorAll('.card');
+        const cards = document.querySelectorAll('.card, .stat-card');
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
@@ -512,16 +784,34 @@
                 const y = e.clientY - rect.top;
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
-                const rotateX = ((y - centerY) / centerY) * -5;
-                const rotateY = ((x - centerX) / centerX) * 5;
-                
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+                const rotateX = ((y - centerY) / centerY) * -6;
+                const rotateY = ((x - centerX) / centerX) * 6;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
             });
-            
+            card.style.transition = "transform 0.1s ease, border-color 0.3s, box-shadow 0.3s";
             card.addEventListener('mouseleave', () => {
                 card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
             });
         });
+
+        function switchTab(mode, btn) {
+            document.querySelectorAll('.preview-tab').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+            
+            document.querySelectorAll('.screen-effect').forEach(fx => fx.classList.remove('active'));
+            document.getElementById(`fx-${mode}`).classList.add('active');
+        }
+
+        function changeAccent(hex, name, el) {
+            document.querySelectorAll('.palette-circle').forEach(c => c.classList.remove('active'));
+            el.classList.add('active');
+
+            document.documentElement.style.setProperty('--primary', hex);
+            document.documentElement.style.setProperty('--primary-glow', hex + '66');
+            document.documentElement.style.setProperty('--primary-hover', hex);
+
+            document.getElementById('version-badge').innerText = `v0.3 Active Theme: ${name}`;
+        }
     </script>
 </body>
 </html>
